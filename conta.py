@@ -14,9 +14,32 @@ class Conta:
     def deposita(self, valor):
         self.__saldo += valor
 
+    def __pode_sacar(self, valor_a_sacar): #__ indica que é um método privado
+        valor_disponivel_saque = self.__saldo + self.__limite
+        return valor_a_sacar <= valor_disponivel_saque
+
     def saca(self, valor):
-        self.__saldo -= valor
+        if self.pode_sacar(valor):
+            self.__saldo -= valor
+        else:
+            print(f"O valor {valor} ultrapassou o limite.")
 
     def transfere(self, valor, conta_destino):
         self.saca(valor)
         conta_destino.deposita(valor)
+
+    @property
+    def saldo(self):
+        return self.__saldo
+
+    @property
+    def titular(self):
+        return self.__titular
+
+    @property
+    def limite(self):
+        return self.__limite
+
+    @limite.setter
+    def limite(self, valor):
+        self.__limite = valor
