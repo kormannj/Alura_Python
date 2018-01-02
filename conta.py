@@ -43,3 +43,11 @@ class Conta:
     @limite.setter
     def limite(self, valor):
         self.__limite = valor
+
+    @staticmethod
+    def codigo_banco():
+        return "001" #Supondo que o sistema construído é do Banco do Brasil
+
+    @staticmethod
+    def codigos_bancos():
+        return {'BB':'001', 'Caixa':'104', 'Bradesco':'237'}
